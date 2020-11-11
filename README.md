@@ -4,12 +4,12 @@
 
 ### The first column of the excel file must contain the headers for the json keys
 
-args:
+**args:**
 - python interpreter
 - python file
 - fullpath from file xlsx
 
-optionals:
+**optionals:**
 - number of sheet 
 - index of columns separated by ,
 - optional filename(by default is the current filename) 
