@@ -5,7 +5,6 @@
 ### The first column of the excel file must contain the headers for the json keys
 
 **args:**
-- python interpreter
 - python file
 - fullpath from file xlsx
 
