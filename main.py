@@ -15,6 +15,7 @@ import sys
 import json
 import xlrd
 import datetime
+from parseModule import parseValue
 
 def full_path(source, filename):
     if filename is None:
@@ -47,19 +48,9 @@ if __name__ == '__main__':
         obj = {}
         for j in range(len(cols)):
             label = worksheet.cell(0, cols[j]).value
-            #try:
-                #val = datetime.datetime.strptime(str(worksheet.cell(i, cols[j]).value), dateFormat)
-                #val = datetime.datetime(*xlrd.xldate_as_tuple(worksheet.cell(i, cols[j]).value, workbook.datemode))
-                #print(val)
-            #except ValueError:
-            val = worksheet.cell(i, cols[j]).value
-                
-            obj[label] = val.strip() if isinstance(val, str) else val
+            obj[label] = parseValue(worksheet.cell(i, cols[j]))
         jsonArray.append(obj)
 
     fullpath = full_path(source, filename)
     with open(fullpath, 'w', encoding='utf8') as f: 
-        json.dump(jsonArray, f, ensure_ascii=False, separators=(',', ': '))
-        #for row in jsonArray:
-            #json.dump(row, f, ensure_ascii=False)
-            #f.write("\n")
+        json.dump(jsonArray, f, ensure_ascii=False, separators=(',', ': '), indent=4)
