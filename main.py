@@ -16,6 +16,7 @@ import json
 import xlrd
 import datetime
 from parseModule import parseValue
+from menu.UIMenu import UIMenu
 
 def full_path(source, filename):
     if filename is None:
@@ -26,6 +27,8 @@ def full_path(source, filename):
 
 
 if __name__ == '__main__':
+    UIMenu()
+    """
     if len(sys.argv) < 2:
         raise Exception('Invalid args number')
     
@@ -54,3 +57,4 @@ if __name__ == '__main__':
     fullpath = full_path(source, filename)
     with open(fullpath, 'w', encoding='utf8') as f: 
         json.dump(jsonArray, f, ensure_ascii=False, separators=(',', ': '), indent=4)
+    """
