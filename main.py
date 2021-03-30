@@ -16,7 +16,7 @@ import json
 import xlrd
 import datetime
 from parseModule import parseValue
-from menu.UIMenu import UIMenu
+from ui.UIMenu import UIMenu
 
 def full_path(source, filename):
     if filename is None:
