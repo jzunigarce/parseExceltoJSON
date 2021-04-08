@@ -3,7 +3,7 @@
 from __future__ import print_function, unicode_literals
 from pprint import pprint
 from PyInquirer import prompt, Separator, style_from_dict, Token
-from os import path
+from .config.styles import get_styles
 
 class UIMenu:
     def __init__(self):
@@ -26,13 +26,6 @@ class UIMenu:
 
         answers = prompt(questions, style=self.get_styles())
         path = answers['path']
-        print(path)
-        if self.is_dir(path):
-            print("Es directorio")
-        elif self.is_file(path):
-            print("Es archivo")
-        else:
-            print("Error en el archivo")
 
         questions = [
             {
@@ -54,22 +47,15 @@ class UIMenu:
 
         answers = prompt(questions, style=self.get_styles())
         pprint(answers)
+    
+    def make_question(name='default', message='Enter a text'):
+        questions = [
+            {
+                'type': 'input',
+                'name': name,
+                'message': message
+            }
+        ]
 
-    def is_dir(self, dirname):
-        return path.isdir(dirname)
+        answer = prompt(question, style=self.get_styles())
 
-    def is_file(self, filename):
-        return path.isfile(filename)
-
-    def get_styles(self):
-        custom_style = style_from_dict({
-            Token.Separator: '#66a6c3 bold',
-            Token.QuestionMark: '#ff0000 bold',
-            Token.Selected: '#cc5454',  # default
-            Token.Pointer: '#673ab7 bold',
-            Token.Instruction: 'bold',  # default
-            Token.Answer: '#66a6c3 bold',
-            Token.Question: 'bold',
-        })
-
-        return custom_style
