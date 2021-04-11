@@ -2,8 +2,8 @@
 
 from __future__ import print_function, unicode_literals
 from pprint import pprint
-from PyInquirer import prompt, Separator, style_from_dict, Token
-from .config.styles import get_styles
+from Workbook import Workbook
+from .question_cli import make_question, make_selection, make_list
 
 class UIMenu:
     def __init__(self):
@@ -12,50 +12,18 @@ class UIMenu:
     def draw(self):
         print("🚀 xlsx to JSON converter")
         self.menu()
-    #def ():
-    #    pass
 
     def menu(self):
-        questions = [
-            {
-                'type': 'input',
-                'name': 'path',
-                'message': 'Enter filename or dir'
-            }
-        ]
-
-        answers = prompt(questions, style=self.get_styles())
-        path = answers['path']
-
-        questions = [
-            {
-                'type': 'checkbox',
-                'name': 'worksheets',
-                'message': "Worksheets",
-                'choices': [
-                    Separator('= Select worksheets ='),
-                    {
-                        'name': 'Ham'
-                    },
-                    {
-                        'name': 'Ground meat'
-                    },
-                ],
-                'Validate': lambda answer: 'You muest choose at least one' if len(answer) == 0 else true
-            }
-        ]
-
-        answers = prompt(questions, style=self.get_styles())
-        pprint(answers)
+        file_path = make_question("filename", "File name")
+        try:
+            workbook = Workbook(file_path['filename'])
+            sheets_names = workbook.list_sheet_names()
+            separator = '= Select worksheets ='
+            selected_sheets = make_selection("sheets", "Select sheets", sheets_names, separator)
+            selected_sheets = selected_sheets['sheets']
+            config_option = make_list("config_option", "Please pick a config option?", ["default", "manual"])
+            print(config_option)
+        except FileNotFoundError:
+            pprint("An error occurred while trying to open the workbook")
+            return
     
-    def make_question(name='default', message='Enter a text'):
-        questions = [
-            {
-                'type': 'input',
-                'name': name,
-                'message': message
-            }
-        ]
-
-        answer = prompt(question, style=self.get_styles())
-

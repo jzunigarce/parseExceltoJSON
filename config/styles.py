@@ -1,4 +1,6 @@
-def get_styles(self):
+from PyInquirer import style_from_dict, Token
+
+def get_styles():
     custom_style = style_from_dict({
         Token.Separator: '#66a6c3 bold',
         Token.QuestionMark: '#ff0000 bold',
