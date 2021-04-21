@@ -11,7 +11,6 @@ class Workbook:
 
     def list_sheet_names(self):
         return self.book.sheet_names()
-        #return [{'name': i, 'checked': True} for i in sheets_names]
 
     def open_sheet(self, name):
         return Worksheet(self.book.sheet_by_name(name))
