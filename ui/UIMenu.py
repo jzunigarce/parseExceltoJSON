@@ -23,7 +23,7 @@ class UIMenu:
             
             uiWorkbook = UIWorkbook();
             selected_sheets = uiWorkbook.select_sheet_names(sheets_names)
-            config_option = make_list("config_option", "Please pick a config option?", ["default", "manual"])
+            #config_option = make_list("config_option", "Please pick a config option?", ["default", "manual"])
             worksheets = [workbook.open_sheet(sheet_name) for sheet_name in selected_sheets]
             
             '''if config_option['config_option'] == 'default':
