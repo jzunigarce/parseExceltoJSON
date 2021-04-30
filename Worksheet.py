@@ -25,3 +25,14 @@ class Worksheet:
             obj_array.append(obj)
         return obj_array
 
+    def change_column_name(self, columns):
+        for col in columns:
+            #i = self.columns_names.index(col[0])
+            i = self.get_index_column_name(col[0])
+            self.columns_names[i] = col[1]
+
+    def get_cell(self, i, j):
+        return self.sheet.cell_value(i, j)
+
+    def get_index_column_name(self, key):
+        return self.columns_names.index(key)
