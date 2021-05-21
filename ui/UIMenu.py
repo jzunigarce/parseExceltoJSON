@@ -5,6 +5,7 @@ from pprint import pprint
 from Workbook import Workbook
 from .question_cli import make_question, make_selection, make_list
 from .UIWorkbook import UIWorkbook
+from .UIWorksheet import UIWorksheet
 import json_file
 import file_helper
 import traceback
@@ -37,15 +38,11 @@ class UIMenu:
                     if config_option['config_option'] == 'default':
                         filename = worksheet.get_name()
                     else:
-                        periodo_column_name = [val for val in worksheet.list_columns_name() if "PERIODO" in str(val).upper()]
-                        print(periodo_column_name)
-                        new_columns_names = []
-                        new_columns_names.append((periodo_column_name[0], "PERIODO"))
-                        worksheet.change_column_name(new_columns_names)
-                        columns_key = ["CLAVE PLANTEL (CCT)", "CLAVE CARRERA", "GRUPO", "SEMESTRE", "CLAVE PLANTEL (CCT)", "PERIODO"]
-                        separator_filename = "-"
-                        filename = str(count) + "-" + separator_filename.join([str(worksheet.get_cell(1, worksheet.get_index_column_name(col_key))) for col_key in columns_key])
-                        count += 1
+                        uiWorksheet = UIWorksheet()
+                        selected_columns = uiWorksheet.select_columns_names(worksheet.list_columns(), worksheet.get_name())
+                        worksheet.filter_columns(selected_columns)
+                        filename = uiWorksheet.set_name() if uiWorksheet.set_name() else worksheet.get_name()
+
                     obj_array = worksheet.parse_obj()
                     json_file.write(s, obj_array, filename) 
         except FileNotFoundError as e: 

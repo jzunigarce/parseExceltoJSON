@@ -8,7 +8,7 @@ class Worksheet:
         self.columns_names = [sheet.cell(0, col).value for col in range(self.sheet.ncols)]
         self.rows = self.sheet.nrows
 
-    def list_columns_name(self):
+    def list_columns(self):
         return self.columns_names
 
     def get_name(self):
@@ -27,7 +27,6 @@ class Worksheet:
 
     def change_column_name(self, columns):
         for col in columns:
-            #i = self.columns_names.index(col[0])
             i = self.get_index_column_name(col[0])
             self.columns_names[i] = col[1]
 
@@ -36,3 +35,6 @@ class Worksheet:
 
     def get_index_column_name(self, key):
         return self.columns_names.index(key)
+
+    def filter_columns(self, columns):
+        self.columns_names = columns
