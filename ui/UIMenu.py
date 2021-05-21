@@ -30,14 +30,15 @@ class UIMenu:
                 sheets_names = workbook.list_sheet_names()
                 
                 uiWorkbook = UIWorkbook();
-                selected_sheets = uiWorkbook.select_sheet_names(sheets_names)
+                selected_sheets = uiWorkbook.select_sheet_names(sheets_names, s)
                 worksheets = [workbook.open_sheet(sheet_name) for sheet_name in selected_sheets]
                 
                 for worksheet in worksheets:
                     if config_option['config_option'] == 'default':
                         filename = worksheet.get_name()
                     else:
-                        periodo_column_name = [val for val in worksheet.list_columns_name() if "PERIODO" in val.upper()]
+                        periodo_column_name = [val for val in worksheet.list_columns_name() if "PERIODO" in str(val).upper()]
+                        print(periodo_column_name)
                         new_columns_names = []
                         new_columns_names.append((periodo_column_name[0], "PERIODO"))
                         worksheet.change_column_name(new_columns_names)

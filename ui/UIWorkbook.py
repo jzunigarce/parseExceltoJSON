@@ -6,9 +6,9 @@ class UIWorkbook:
     def __init__(self):
         pass
     
-    def select_sheet_names(self, sheets_names):
-        separator = '= 📊 Select worksheets ='
+    def select_sheet_names(self, sheets_names, workbook_name):
+        separator = '= 📊 Select worksheets of ' + workbook_name + " ="
         sheets_names_list = [{'name': i, 'checked': True} for i in sheets_names]
-        selected_sheets_names = make_selection("sheets", "Select sheets", sheets_names_list, separator)
+        selected_sheets_names = make_selection("sheets","Workbook "+workbook_name+" =>", sheets_names_list, separator)
         return selected_sheets_names['sheets']
       

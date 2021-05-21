@@ -14,3 +14,6 @@ class Workbook:
 
     def open_sheet(self, name):
         return Worksheet(self.book.sheet_by_name(name))
+
+    def get_name(self):
+        return self.book.Name
