@@ -42,7 +42,7 @@ class UIMenu:
                         new_columns_names = []
                         new_columns_names.append((periodo_column_name[0], "PERIODO"))
                         worksheet.change_column_name(new_columns_names)
-                        columns_key = ["CLAVE PLANTEL (CCT)", "CLAVE CARRERA", "GRUPO", "SEMESTRE", "CLAVE PLANTEL (CCT)", "PERIODO"]
+                        columns_key = ["CLAVE PLANTEL (CCT)", "CLAVE CARRERA", "GRUPO", "SEMESTRE", "PERIODO"]
                         separator_filename = "-"
                         filename = str(count) + "-" + separator_filename.join([str(worksheet.get_cell(1, worksheet.get_index_column_name(col_key))) for col_key in columns_key])
                         count += 1
