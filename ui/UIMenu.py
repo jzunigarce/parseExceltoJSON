@@ -38,7 +38,7 @@ class UIMenu:
                         filename = worksheet.get_name()
                     else:
                         periodo_column_name = [val for val in worksheet.list_columns_name() if "PERIODO" in str(val).upper()]
-                        print(periodo_column_name)
+                        #print(periodo_column_name)
                         new_columns_names = []
                         new_columns_names.append((periodo_column_name[0], "PERIODO"))
                         worksheet.change_column_name(new_columns_names)
